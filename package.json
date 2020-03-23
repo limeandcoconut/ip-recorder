@@ -4,7 +4,9 @@
   "author": "Jacob Smith <js@jacobsmith.tech> (https://github.com/limeandcoconut)",
   "private": false,
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "scp:secrets": "scp -r ./password-hashes.js dev:ip-recorder/"
+  },
   "keywords": [],
   "license": "isc",
   "dependencies": {
