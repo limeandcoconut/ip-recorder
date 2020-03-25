@@ -4,6 +4,7 @@ const argon2 = require('argon2')
 const { port } = require('./config.js')
 const fs = require('fs').promises
 
+const reloadHAProxy = require('./reload-haproxy.js')
 const hashedRecord = require('./password-hashes.js')
 
 const filePath = './ip-address.txt'
@@ -33,6 +34,7 @@ app.post('/', async (request, response) => {
   }
   ip = request.body.ip
   await fs.writeFile(filePath, ip)
+  await reloadHAProxy(ip)
 
   response.status(200)
   return response.send('Received')
